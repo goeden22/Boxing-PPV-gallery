@@ -12,16 +12,33 @@ class App extends Component {
     super(props);
 
     this.state = {
-      current : data[0]
+      current : data[0],
+      direction: "down",
+      locked: false
     }
     this.next = () => {
       console.log(this.state.current)
-      if (this.state.current.index >= data.length -1) {
+      if (this.state.current.index >= data.length -1 || this.state.locked) {
         return false
       }
-      const next = this.state.current.index + 1;
-      this.setState({current: data[1]})
+      this.setState({direction: "down", locked: true}, () => {
+        setTimeout(() => {
+          this.setState({locked: false})
+        }, 3000)
+        const next = this.state.current.index + 1;
+        this.setState({current: data[next]})
+      })
+     
       
+    }
+    this.previous = () => {
+      if (this.state.current.index <= 0 || this.state.locked) {
+        return false
+      }
+      this.setState({direction: "up"}, () => {
+        const next = this.state.current.index -1;
+        this.setState({current: data[next]})
+      })
     }
   }
 
@@ -48,7 +65,7 @@ class App extends Component {
         </div>
         
         <TransitionGroup>
-          <CSSTransition key={this.state.current.index} timeout={2500} classNames="fade">
+          <CSSTransition key={this.state.current.index} timeout={2500} classNames={this.state.direction == "down" ? "fadedown" : "fadeup"}>
           < Article position={this.state.current.position}/>
           </ CSSTransition>
           </ TransitionGroup>

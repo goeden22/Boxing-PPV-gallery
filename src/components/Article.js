@@ -5,9 +5,19 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 
 class Article extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {appear: false}
+  }
+  componentDidMount(){
+    this.setState({appear: true})
+  }
     render() {
       return (
           <div class="article">
+            <div className="article__container">
+            <div className="article__overflowcontainer">
+            <CSSTransition in={this.state.appear} appear={true} timeout={1400} classNames="fade">
           <div className="article__text">
             <div class="article__header">
               <h1 class="small-header">{this.props.position}.</h1>
@@ -23,6 +33,11 @@ class Article extends Component {
               <div class="article__statsSet"><h1 className="big-paragraph">Sales:  <span className="light-paragraph">12.670.000</span></h1></div>
             </div>
             </div>
+            </ CSSTransition>
+            </div>
+            </div>
+       
+          
           </div>
 
           );
