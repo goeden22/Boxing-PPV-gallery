@@ -30,7 +30,8 @@ class App extends Component {
       <div className="App">
 
         <div class="menu">
-        <button onClick={this.next.bind(this)}>next</button>
+        <button onClick={this.previous}>prev</button>
+        <button onClick={this.next}>next</button>
           <div class="menu__container">
             <li class="menu__item"></li>
             <li class="menu__item"></li>
