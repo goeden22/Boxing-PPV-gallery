@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:300,400');
+
+@font-face {
+    font-family: 'raleway-bold';
+      src: url("./fonts/Raleway-Bold.ttf");
+  }
+  @font-face {
+    font-family: 'raleway-semibold';
+      src: url("./fonts/Raleway-SemiBold.ttf");
+  }
+  h1{
+    margin: 0;
+  }
+  
+  $regular: 400;
+  $light: 300;
+
+  $primaryColor: #ffffff;
+  $primaryShaded: #5c5c5c;
+
+  $primaryFont: 'raleway-bold';
+  $primaryFontLight: 'raleway-semibold';
+  $secondaryFont : 'Roboto Slab';
+
+  $xsmallSpace: 7px;
+  $smallSpace: 20px;
+  $mediumSpace: 40px;
+  $largeSpace: 75px;
+  $xlargeSpace: 125px;
+  body{
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  .maincontainer{
+    height: 100vh;
+    width: 100vh;
+  }
+  .App{
+    height: 100vh;
+    box-sizing: border-box;
+
+  }
+
+  .big-header{
+    font-family: $primaryFont;
+    font-size: 68px;
+    color: $primaryColor;
+    padding: 0;
+    margin: 0;
+    font-weight: 400
+  }
+  .small-header{
+    font-family: $primaryFontLight;
+    font-size: 36px;
+    color: $primaryColor;
+    padding: $xsmallSpace 0;
+    margin: 0;
+    letter-spacing: 3px;
+  }
+  .big-paragraph{
+    font-family: $secondaryFont;
+    font-weight: $regular;
+    font-size: 16px;
+    color: $primaryColor;
+    line-height: 1.8
+  }
+  .light-paragraph{
+      font-family: $secondaryFont;
+      font-weight: $light;
+      font-size: 16px;
+      color: $primaryColor;
+  
+  }
+
+.article{
+ position: absolute;
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  background: url(../img/jpg/10.jpg) no-repeat left center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  &__text{
+    padding-top:$xlargeSpace;
+    padding-left: 240px;
+  }
+  &__header{
+    width: 600px;
+    margin-bottom: $largeSpace;
+    
+  }
+  &__paragraph{
+    width: 700px;
+  }
+  &__stats{
+    margin-top: $smallSpace;
+  }
+  &__statsSet{
+    margin: $xsmallSpace 0;
+  }
+}
+.menu{
+  z-index: 2;
+  align-self: center;
+  display: inline-block;
+  width: 200px;
+  height: 95%;
+  border-right: 1px solid $primaryShaded;
+  position: absolute;
+  left: 0;
+}
+
+/*REACT GROUP*/
+.fade-enter{
+  transform: translateY(100%);
+}
+/*koniec*/
+.fade-enter.fade-enter-active{
+  transform: translateY(0);
+  /*jezeli chcemy miedzy enterem a exitem zrobic timeout, musimy dodac drugi parametr do transition 'property/czas/styl/timeout' wazne zeby ustawic to tak zeby suma byla zgodna z timeoutem podanym jako property do csstransition group
+  np 2500 czas 2500 timeout i 5000 w reactie wtedy musi byc*/
+  transition: transform 2500ms cubic-bezier(1,.05,.25,1)
+}
+/*on component unmount*/
+.fade-exit{
+  transform: translateY(0);
+
+}
+/*koniec przy odmontowaniu*/
+
+.fade-exit.fade-exit-active{
+  transform: translateY(-100%);
+  transition:  transform 2500ms cubic-bezier(1,.05,.25,1)
+}
+.fade-exit-done{
+  transform: translateY(-100%);
+}
