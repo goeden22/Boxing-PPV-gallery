@@ -32,31 +32,3 @@
   }
 }
 
-.fade-enter{
-
-  opacity: 0;
-}
-/*koniec*/
-.fade-enter.fade-enter-active{
-
-  opacity: 1;
-  /*jezeli chcemy miedzy enterem a exitem zrobic timeout, musimy dodac drugi parametr do transition 'property/czas/styl/timeout' wazne zeby ustawic to tak zeby suma byla zgodna z timeoutem podanym jako property do csstransition group
-  np 2500 czas 2500 timeout i 5000 w reactie wtedy musi byc*/
-  transition: transform 2500ms cubic-bezier(1,.05,.25,1) 2500ms, opacity 2500ms ease-out 2500ms;
-}
-/*on component unmount*/
-.fade-exit{
-
-  opacity: 1;
-
-}
-/*koniec przy odmontowaniu*/
-
-.fade-exit.fade-exit-active{
-
-  opacity: 0;
-  transition:  transform 2500ms cubic-bezier(1,.05,.25,1), opacity 2500ms ease-out;
-}
-.fade-exit-done{
-  opacity: 0;
-}

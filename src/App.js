@@ -66,7 +66,7 @@ class App extends Component {
         
         <TransitionGroup>
           <CSSTransition key={this.state.current.index} timeout={2500} classNames={this.state.direction == "down" ? "fadedown" : "fadeup"}>
-          < Article position={this.state.current.position}/>
+          < Article entry={this.state.current}/>
           </ CSSTransition>
           </ TransitionGroup>
         </div>
