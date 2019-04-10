@@ -35,10 +35,19 @@
     padding-top:$xlargeSpace;
     padding-left: 240px;
     overflow: hidden;
+    width: 900px;
     
+  }
+
+  &--right{
+    float: right;
+    text-align: right;
+    padding-right: $largeSpace;
+    padding-left: 0;
   }
   &__overflowcontainer{
     overflow: hidden;
+    width: 100%;
   }
   &__text{
     transform: translateX(-200px);
@@ -46,12 +55,12 @@
     transition:  transform 700ms ease-out, opacity 700ms ease-out
   }
   &__header{
-    width: 600px;
+    
     margin-bottom: $largeSpace;
     
   }
   &__paragraph{
-    width: 700px;
+   width: 700px;
   }
   &__stats{
     margin-top: $smallSpace;
@@ -69,6 +78,28 @@
   border-right: 1px solid $primaryShaded;
   position: absolute;
   left: 0;
+}
+
+.loader{
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &__wheel{
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    padding-bottom: $smallSpace;
+  }
+  &__exit{
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+  }
 }
 
 /*REACT GROUP*/
@@ -131,4 +162,17 @@
 .fade-enter-done{
   transform: translateX(0);
   opacity: 1
+}
+.loader-appear{
+  opacity: 0;
+}
+.loader-appear.loader-appear-active{
+  opacity: 1;
+  transition: opacity 500ms ease-out
+}
+.loader-enter-done{
+  opacity: 1
+}
+.loader-exit{
+
 }

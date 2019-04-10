@@ -5,6 +5,7 @@ import Article from './components/Article.js';
 import {data} from './data/data.js';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './fade.css'
+import Loader from './components/Loader.js'
 
 class App extends Component {
 
@@ -14,16 +15,17 @@ class App extends Component {
     this.state = {
       current : data[0],
       direction: "down",
-      locked: false
+      locked: false,
+      loading: false
     }
     this.next = () => {
       console.log(this.state.current)
       if (this.state.current.index >= data.length -1 || this.state.locked) {
         return false
       }
-      this.setState({direction: "down", locked: true}, () => {
+      this.setState({direction: "down", locked: true, loading: true}, () => {
         setTimeout(() => {
-          this.setState({locked: false})
+          this.setState({locked: false, loading: false})
         }, 3000)
         const next = this.state.current.index + 1;
         this.setState({current: data[next]})
@@ -40,7 +42,11 @@ class App extends Component {
         this.setState({current: data[next]})
       })
     }
+    this.isEven = (index) => {
+       return index % 2 == 0;
+    }
   }
+  
 
   render() {
     return (
@@ -63,10 +69,13 @@ class App extends Component {
           </div>
           <ul class="menu__list"></ul>
         </div>
+    
+    
+        
         
         <TransitionGroup>
           <CSSTransition key={this.state.current.index} timeout={2500} classNames={this.state.direction == "down" ? "fadedown" : "fadeup"}>
-          < Article entry={this.state.current}/>
+          < Article entry={this.state.current} even={this.isEven(this.state.current.index)}/>
           </ CSSTransition>
           </ TransitionGroup>
         </div>
@@ -76,3 +85,6 @@ class App extends Component {
       }
     }
     export default App;
+/**    {this.state.loading ?     <CSSTransition in={this.state.loading} appear={true} timeout={500} classNames="loader">
+        <Loader></ Loader>
+      </ CSSTransition> : ''} */
