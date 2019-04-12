@@ -16,7 +16,7 @@ class Loader extends Component {
     render() {
         return (
             
-            <div className="loader">
+            <div className={`loader ${this.props.fade ? 'loader--none' : ''}`}>
                 <div className="loader__wrap">
                     <img className='loader__wheel' src={loader}></img>
                     <h1 className="big-paragraph">loading . . .</h1>

@@ -2,29 +2,53 @@
 import React, { Component } from 'react';
 import '../css/App.scss';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import Loader from './Loader.js'
+import Loader from './Loader.js';
+import BackgroundImageOnLoad from 'background-image-on-load';
 
 
 class Article extends Component {
   constructor(props) {
     super(props);
     this.state = {appear: false,
-      loading: true}
+      loading: true,
+    faded: false,
+  mounted: false}
+
+      this.handleLoad = () => {
+        this.setState({mounted: true})
+      }
+      this.setImg = () => {
+        //return require(`../img/jpg/${this.props.entry.index}.jpg`)
+       return require(`../img/jpg/${this.props.entry.index}.jpg`)
+      }
   }
   
   componentDidMount(){
     
-    setTimeout(() => {
-      this.setState({appear: true, loading: false})
-    }, 4000)
+    
   }
     render() {
       return (
-          <div class="article" style={{backgroundImage: `url(${require(`../img/jpg/${this.props.entry.index}.jpg`)})`}}>
-          {this.state.loading ? <Loader></ Loader> :
+          <div class="article" style={{backgroundImage: `url(${this.setImg()})`}} onLoad={this.handleLoad}>
+          <BackgroundImageOnLoad
+            src={this.setImg()}
+            onLoadBg={() =>
+                setTimeout(() => {
+                  this.setState({
+                    faded: true
+                  }, () => {
+                    setTimeout(() => {
+                      this.setState({loading:false, appear: true})
+                    }, 1500)
+                  })
+                },1000)
+              }
+            onError={err => console.log('error', err)}
+          />
+          {this.state.loading ? <Loader fade={this.state.faded && this.state.mounted}></ Loader> :
            <div className="article__container">
            <div className="article__overflowcontainer">
-           <CSSTransition in={this.state.appear} appear={true} timeout={1400} classNames="fade">
+           <CSSTransition in={this.state.appear} appear={true} timeout={700} classNames="fade">
          <div className="article__text">
            <div class="article__header">
              <h1 class="small-header">{this.props.entry.position.toString()}.</h1>
