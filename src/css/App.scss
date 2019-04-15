@@ -18,7 +18,11 @@
     box-sizing: border-box;
 
   }
-
+  .buttons{
+    position: absolute;
+    top: 0;
+    z-index: 100;
+  }
   
 .article{
  position: absolute;
@@ -31,19 +35,28 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+  transition:  background-position 10000ms ease-out;
   &__container{
     padding-top:$xlargeSpace;
-    padding-left: 240px;
+    padding-left: 290px;
     overflow: hidden;
     width: 900px;
     
   }
-
+&--rightBG{
+  background-position: 0px -50px;
+}
   &--right{
     float: right;
     text-align: right;
     padding-right: $largeSpace;
     padding-left: 0;
+  }
+  &--flexright{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
   &__overflowcontainer{
     overflow: hidden;
@@ -73,11 +86,37 @@
   z-index: 2;
   align-self: center;
   display: inline-block;
-  width: 200px;
-  height: 95%;
-  border-right: 1px solid $primaryShaded;
+  width: 250px;
+  height: 100%;
   position: absolute;
+  display: flex;
   left: 0;
+  align-items: center;
+  &__wrapper{
+    border-right: 1px solid $primaryShaded;
+    height: 95%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  &__list{
+    text-align:center;
+    padding: 0;
+    margin: 0;
+    transition: transform 400ms cubic-bezier(1,.05,.25,1),;
+  }
+  &__item{
+    padding: 5px 0;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    transition:  opacity 400ms cubic-bezier(1,.05,.25,1);
+  }
+  &__container{
+    height: 175px;
+    overflow: hidden;
+  }
 }
 
 .loader{
@@ -106,54 +145,106 @@
     opacity: 0;
   }
 }
+.progress{
+  position: absolute;
+  width: 100vw;
+  bottom: $mediumSpace;
+  z-index: 50;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+
+  &__bar{
+    width: 95vw;
+    height: 2px;
+    background-color: $primaryShaded;
+  }
+  &__fill{
+    background-color: $primaryLightShaded;
+    width: 0;
+    height: 100%;
+    transition: width 10000ms linear;
+   
+  }
+  &--fasttransition{
+    transition: width 200ms linear;
+  }
+  &__points{
+    width: 95vw;
+    display: flex;
+    justify-content: space-between
+    
+  }
+  &__point{
+    height: 5px;
+    width: 5px;
+    background-color: $primaryShaded;
+    transition: background-color 700ms ease-out;
+    &--filled{
+      background-color: $primaryColor;
+    }
+   
+  }
+
+}
 
 /*REACT GROUP*/
 .fadedown-enter{
   transform: translateY(100%);
+  background-position: 0px 0px;
 }
 
 .fadedown-enter.fadedown-enter-active{
   transform: translateY(0);
+  background-position: 0px -100px;
 
-  transition: transform 2500ms cubic-bezier(1,.05,.25,1)
+  transition: transform 2500ms cubic-bezier(1,.05,.25,1), background-position 5000ms linear;
 }
 
 .fadedown-exit{
   transform: translateY(0);
-
+  
 }
 
 
 .fadedown-exit.fadedown-exit-active{
   transform: translateY(-100%);
-  transition:  transform 2500ms cubic-bezier(1,.05,.25,1)
+  
+  transition: transform 2500ms cubic-bezier(1,.05,.25,1), background-position 5000ms linear;
 }
 .fadedown-exit-done{
   transform: translateY(-100%);
+  
 }
 
 /*ALTERNATIVE REACT GROUP*/
 .fadeup-enter{
   transform: translateY(-100%);
+  background-position: 0px 0px;
+  
 }
 
 .fadeup-enter.fadeup-enter-active{
   transform: translateY(0);
-
-  transition: transform 2500ms cubic-bezier(1,.05,.25,1)
+  background-position: 0px -50px;
+  transition: transform 2500ms cubic-bezier(1,.05,.25,1), background-position 5000ms linear;
 }
 
 .fadeup-exit{
   transform: translateY(0);
-
+  
 }
 
 .fadeup-exit.fadeup-exit-active{
   transform: translateY(100%);
-  transition:  transform 2500ms cubic-bezier(1,.05,.25,1)
+ 
+  transition: transform 2500ms cubic-bezier(1,.05,.25,1), background-position 5000ms linear;
 }
 .fadeup-exit-done{
   transform: translateY(100%);
+  
 }
 .fade-appear{
   transform: translateX(-200px);

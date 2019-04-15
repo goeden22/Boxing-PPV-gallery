@@ -14,6 +14,7 @@
   $light: 300;
 
   $primaryColor: #ffffff;
+  $primaryLightShaded: #d7d7d7;
   $primaryShaded: #5c5c5c;
 
   $primaryFont: 'raleway-bold';
@@ -25,6 +26,7 @@
   $mediumSpace: 40px;
   $largeSpace: 75px;
   $xlargeSpace: 125px;
+  $menuSpace: 290px;
 
   .big-header{
     font-family: $primaryFont;
@@ -55,4 +57,12 @@
       font-size: 16px;
       color: $primaryColor;
   
+  }
+  .menu-paragraph{
+    font-family: $secondaryFont;
+    font-weight: $regular;
+    font-size: 14px;
+    color: $primaryColor;
+    margin: 0 auto;
+   
   }

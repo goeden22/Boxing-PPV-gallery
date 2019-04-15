@@ -12,7 +12,8 @@ class Article extends Component {
     this.state = {appear: false,
       loading: true,
     faded: false,
-  mounted: false}
+  mounted: false,
+bgPos:false}
 
       this.handleLoad = () => {
         this.setState({mounted: true})
@@ -25,11 +26,11 @@ class Article extends Component {
   
   componentDidMount(){
     
-    
   }
     render() {
       return (
-          <div class="article" style={{backgroundImage: `url(${this.setImg()})`}} onLoad={this.handleLoad}>
+        
+          <div className={`article + ${this.state.bgPos ? 'article--rightBG' : ''}`} style={{backgroundImage: `url(${this.setImg()})`}} onLoad={this.handleLoad}>
           <BackgroundImageOnLoad
             src={this.setImg()}
             onLoadBg={() =>
@@ -38,7 +39,10 @@ class Article extends Component {
                     faded: true
                   }, () => {
                     setTimeout(() => {
-                      this.setState({loading:false, appear: true})
+                      this.setState({loading:false, appear: true}, () => {
+                        
+                        this.props.timer()
+                      })
                     }, 1500)
                   })
                 },1000)
@@ -46,10 +50,10 @@ class Article extends Component {
             onError={err => console.log('error', err)}
           />
           {this.state.loading ? <Loader fade={this.state.faded && this.state.mounted}></ Loader> :
-           <div className="article__container">
+           <div className={`article__container ${!this.props.even ? 'article--right': ''}`}>
            <div className="article__overflowcontainer">
            <CSSTransition in={this.state.appear} appear={true} timeout={700} classNames="fade">
-         <div className="article__text">
+         <div className={`article__text ${!this.props.even ? 'article--flexright' : ''}`}>
            <div class="article__header">
              <h1 class="small-header">{this.props.entry.position.toString()}.</h1>
              <h1 class="big-header">{this.props.entry.name || "none"}</h1></div>
