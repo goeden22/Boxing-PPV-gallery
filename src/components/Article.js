@@ -28,6 +28,7 @@ bgPos:false}
     
   }
     render() {
+      let entry = this.props.entry
       return (
         
           <div className={`article + ${this.state.bgPos ? 'article--rightBG' : ''}`} style={{backgroundImage: `url(${this.setImg()})`}} onLoad={this.handleLoad}>
@@ -55,17 +56,16 @@ bgPos:false}
            <CSSTransition in={this.state.appear} appear={true} timeout={700} classNames="fade">
          <div className={`article__text ${!this.props.even ? 'article--flexright' : ''}`}>
            <div class="article__header">
-             <h1 class="small-header">{this.props.entry.position.toString()}.</h1>
-             <h1 class="big-header">{this.props.entry.name || "none"}</h1></div>
+             <h1 class="small-header">{entry.position.toString()}.</h1>
+             <h1 class="big-header">{entry.name || "none"}</h1></div>
            <div class="article__paragraph">
-           <p className="big-paragraph">Evander Holyfield vs. Mike Tyson II, billed as "The Sound and the Fury" and afterwards infamously referred to as "The Bite Fight", was a professional boxing match contested on June 28, 1997, for the WBA Heavyweight Championship.
- 
- </p></div>
+           <p className="big-paragraph">{entry.trivia}</p>
+           </div>
  
            <div class="article__stats">
-           <div class="article__statsSet"><h1 className="big-paragraph">Network:  <span className="light-paragraph">Showtime</span></h1></div>
-             <div class="article__statsSet"><h1 className="big-paragraph">Revenue:  <span className="light-paragraph">180.000.000</span></h1></div>
-             <div class="article__statsSet"><h1 className="big-paragraph">Sales:  <span className="light-paragraph">12.670.000</span></h1></div>
+           <div class="article__statsSet"><h1 className="big-paragraph">Network:  <span className="light-paragraph">{entry.network}</span></h1></div>
+             <div class="article__statsSet"><h1 className="big-paragraph">Revenue:  <span className="light-paragraph">{entry.revenue} $</span></h1></div>
+             <div class="article__statsSet"><h1 className="big-paragraph">Sales:  <span className="light-paragraph">{entry.sales}</span></h1></div>
            </div>
            </div>
            </ CSSTransition>

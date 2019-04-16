@@ -23,6 +23,7 @@
     top: 0;
     z-index: 100;
   }
+ 
   
 .article{
  position: absolute;
@@ -92,6 +93,7 @@
   display: flex;
   left: 0;
   align-items: center;
+  background-color: black;
   &__wrapper{
     border-right: 1px solid $primaryShaded;
     height: 95%;
@@ -174,11 +176,12 @@
   &__points{
     width: 95vw;
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    margin-top: -4px;
     
   }
   &__point{
-    height: 5px;
+    height: 8px;
     width: 5px;
     background-color: $primaryShaded;
     transition: background-color 700ms ease-out;
