@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import '../css/App.scss';
 import {data} from '../data/data.js';
+import up from '../img/svg/up.svg'
+import down from '../img/svg/down.svg'
 
 
 
@@ -18,7 +20,9 @@ class Loader extends Component {
             
             <div class="menu">
             <div className="menu__wrapper">
+                <img src={up} className="menu__arrow"></img>
               <div class="menu__container">
+              
               <ul class="menu__list" style={{transform:`translateY(-${this.props.active >= (data.length -3) ? ((data.length -5)*35) : (this.props.active -2)*35}px)`}}>
               {
                 data.map(entry => {
@@ -28,6 +32,7 @@ class Loader extends Component {
                 })
               }</ul>
               </div>
+              <img src={down} className="menu__arrow"></img>
               
               </div>
             </div>

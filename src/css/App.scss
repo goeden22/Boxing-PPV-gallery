@@ -101,6 +101,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
   &__list{
     text-align:center;
@@ -118,6 +119,16 @@
   &__container{
     height: 175px;
     overflow: hidden;
+  }
+  &__arrow{
+    height:13px;
+    width:13px;
+    padding: $smallSpace;
+    opacity: .33;
+    cursor: pointer;
+    &:hover{
+      opacity: .75;
+    }
   }
 }
 
@@ -191,6 +202,66 @@
    
   }
 
+}
+
+/*MEDIA QUERY*/
+@media screen and (max-width: $breakMedium){
+  .big-paragraph{
+    font-size: 15px;
+  }
+  .menu{
+    width: 25vw;
+  }
+  .article{
+    &__header{
+      width: 75%;
+      margin-bottom: $mediumSpace;
+    }
+    &__container{
+      width: 80%;
+      padding-left: 27vw;
+      padding-top: $smallSpace;
+    }
+    &--right{
+      padding-right: $mediumSpace;
+      padding-top: $smallSpace;
+    }
+    &__paragraph{
+      width: 75%;
+    }
+    
+  }
+  
+}
+@media screen and (max-width: $breakSmall){
+  .big-header{
+    font-size: 42px;
+  }
+}
+@media screen and (max-width: $breakMobile){
+  .menu{
+    display: none;
+  }
+  .article{
+    &__container{
+      width: 95%;
+      padding-left: 10px;
+    }
+    &__header{
+      width: 100%;
+      margin-bottom: $smallSpace;
+    }
+    &__paragraph{
+      width: 100%;
+    }
+    &--right{
+      padding-right: 10px;
+    }
+    .big-paragraph{
+      line-height: 1.5;
+    }
+    
+  }
 }
 
 /*REACT GROUP*/
