@@ -15,9 +15,7 @@ class Article extends Component {
   mounted: false,
 bgPos:false}
 
-      this.handleLoad = () => {
-        this.setState({mounted: true})
-      }
+
       this.setImg = () => {
         //return require(`../img/jpg/${this.props.entry.index}.jpg`)
        return require(`../img/jpg/${this.props.entry.index}.jpg`)
@@ -25,13 +23,13 @@ bgPos:false}
   }
   
   componentDidMount(){
-    
+    this.setState({mounted: true})
   }
     render() {
       let entry = this.props.entry
       return (
         
-          <div className={`article + ${this.state.bgPos ? 'article--rightBG' : ''}`} style={{backgroundImage: `url(${this.setImg()})`}} onLoad={this.handleLoad}>
+          <div className={`article + ${this.state.bgPos ? 'article--rightBG' : ''}`} style={{backgroundImage: `url(${this.setImg()})`}}>
           <BackgroundImageOnLoad
             src={this.setImg()}
             onLoadBg={() =>

@@ -20,7 +20,7 @@ class Loader extends Component {
             
             <div class="menu">
             <div className="menu__wrapper">
-                <img src={up} className="menu__arrow"></img>
+                <img src={up} className="menu__arrow" onClick={() => this.props.buttonHandle('up')}></img>
               <div class="menu__container">
               
               <ul class="menu__list" style={{transform:`translateY(-${this.props.active >= (data.length -3) ? ((data.length -5)*35) : (this.props.active -2)*35}px)`}}>
@@ -32,7 +32,7 @@ class Loader extends Component {
                 })
               }</ul>
               </div>
-              <img src={down} className="menu__arrow"></img>
+              <img src={down} className="menu__arrow"  onClick={() => this.props.buttonHandle('down')}></img>
               
               </div>
             </div>

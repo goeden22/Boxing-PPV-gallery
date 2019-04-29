@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:300,400');
 @import 'typographyspacing';
 @import './reacttransitions.scss';
+@import './arrows.scss';
 
 
 
@@ -25,6 +26,25 @@
   }
  
   
+ .mainLoader{
+   &__text{
+     opacity: 0;
+     transition: opacity 1000ms ease-out;
+     padding: 0 $xsmallSpace;
+   }
+   &__paragraph{
+    opacity: 0;
+    transition: opacity 1000ms ease-out;
+   }
+   color: white;
+   &--visible{
+     opacity: 1
+   }
+   h1{
+     padding-top: $smallSpace;
+   }
+ }
+
 .article{
  position: absolute;
   display: block;
@@ -231,6 +251,8 @@
     }
     
   }
+
+  
   
 }
 @media screen and (max-width: $breakSmall){
@@ -346,3 +368,6 @@
 .loader-exit{
 
 }
+
+
+
