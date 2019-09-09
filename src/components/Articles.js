@@ -4,6 +4,7 @@ import '../css/App.scss';
 import Article from './Article.js';
 import {data} from '../data/data.js';
 import Menu from './Menu.js'
+import MobileMenu from './MobileMenu.js'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import '../fade.css'
 import Loader from './Loader.js'
@@ -22,16 +23,14 @@ class Articles extends Component {
       loading: false,
       active: 0,
       move: false,
-
       fastFill:false,
-      multiplier: 0
+      multiplier: 0,
+      mobile: false
     }
     this.next = (direction) => {
-      console.log('bla')
       if (this.state.current.index >= data.length -1 && direction == "down") {
         return false
       }
-      console.log('bla2')
       clearTimeout(this.timeout)
       this.setState({direction, locked: true, loading: true, move: false}, () => {
         setTimeout(() => {
@@ -51,31 +50,43 @@ class Articles extends Component {
        return index % 2 == 0;
     }
     this.buttonHandle = (direction) => {
-      if(this.state.locked || (direction == "up" && this.state.current.index == 0) || (this.state.current.index >= data.length -1 && direction == "down")){
-        return false
-      }
-      this.setState({fastFill: true, locked: true}, () => {
-        this.setState({multiplier: 0.001})
-      this.next(direction)
-        
-        
-      })
+      setTimeout(() => {
+        if(this.state.locked || (direction == "up" && this.state.current.index == 0) || (this.state.current.index >= data.length -1 && direction == "down")){
+          return false
+        }
+        this.setState({fastFill: true, locked: true}, () => {
+          this.setState({multiplier: 0.001})
+        this.next(direction)
+          
+          
+        })
+      }, 200)
+  
     }
   
     this.timer=(direction) => {
       if (this.state.current.index >= data.length -1 && direction == "down") {
         return false
       }
-      this.setState({fastFill: false, multiplier: 0})
-      this.setState({move: true, locked: false})
+      this.setState({fastFill: false, multiplier: 0, move: true, locked: false})
       this.timeout = setTimeout(function(){
        this.next("down");
+       
         
       }.bind(this),10000)
     }
+    this.checkIfMobile = () => {
+      let mobile = document.querySelector('body').offsetWidth <= 765 ? true : false
+      if(this.state.mobile != mobile){
+          this.setState({mobile})
+      }
+  }
   }
  
-  
+  componentDidMount(){
+    this.checkIfMobile();
+    window.addEventListener("resize", this.checkIfMobile)
+  }
 
   render() {
     let progressWidth = `${(this.state.active + 1) * (100 / (data.length -1)) + this.state.multiplier}`;
@@ -87,8 +98,8 @@ class Articles extends Component {
       <div className="App">
   
 
-  
-        <Menu active={this.state.active} buttonHandle={this.buttonHandle.bind(this)}/>
+        {this.state.mobile ? <MobileMenu locked={this.state.locked} active={this.state.active} buttonHandle={this.buttonHandle.bind(this)}/> : <Menu locked={this.state.locked} active={this.state.active} buttonHandle={this.buttonHandle.bind(this)}/>}
+        
         
         
         <TransitionGroup>

@@ -146,8 +146,13 @@
     padding: $smallSpace;
     opacity: .33;
     cursor: pointer;
+   
+   
+  }
+  &__arrow--active{
+    opacity: .5;
     &:hover{
-      opacity: .75;
+      opacity: .75
     }
   }
 }
@@ -223,6 +228,32 @@
   }
 
 }
+.mobileMenu{
+  &__wrapper{
+    background: none;
+
+position: absolute;
+
+z-index: 500;
+
+width: 100%;
+
+display: flex;
+
+justify-content: center;
+
+bottom: 60px;
+  }
+  &__arrow{
+    width: 20px;
+    padding: 15px;
+    cursor: pointer;
+    opacity: .5;
+    &--active{
+      opacity: .75;
+    }
+  }
+}
 
 /*MEDIA QUERY*/
 @media screen and (max-width: $breakMedium){
@@ -262,11 +293,14 @@
 }
 @media screen and (max-width: $breakMobile){
   .menu{
-    display: none;
+   height: 15vh;
+   width: 100vw;
   }
   .article{
     &__container{
       width: 95%;
+      height: 85vh;
+      overflow-y: scroll;
       padding-left: 10px;
     }
     &__header{
